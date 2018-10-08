@@ -1,8 +1,11 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
-int main()
+// g++ -std=c++11 -o  mpags-cipher mpags-cipher.cpp
+int main(int argc, char* argv[])
 {
+
   // Hello World
   //some comments
   /* a longer comment
@@ -55,16 +58,17 @@ int main()
      "var_double1 / var_int2: " << var_double1*var_int2 << std::endl; // this is type double as c++ takes the most precise order variable
 
 
-   // cipher start
+   // cipher start week1
+   std::cout << "\n------------\n\nBasic Ciper (week1):" << std::endl;
+
    std::cout << "Type input to cipher. Press [Crtl + D] to exit" << std::endl;
-   std::string input_string{""};
-   std::string cipher_string{""};
+
    char input_char{'x'};
    while(std::cin >> input_char)
      {
-       //std::string input_string{""};
+       std::string input_string{""};
        input_string += input_char;
-       //std::string cipher_string{""};
+       std::string cipher_string{""};
        
        // change numbers into words
        if(isdigit(input_char))
@@ -122,6 +126,18 @@ int main()
        std::cout << input_string << std::endl;
        std::cout << cipher_string << std::endl;
      }
+
+   // Command line arguments
+   std::cout << "\n------------\nCommand line arguements:" << std::endl;
+
+   const std::vector<std::string>cmdLineArgs{argv,argv+argc};
+
+   std::cout << "Line entered: " << cmdLineArgs << std::endl;
    
+  
+ 
+
+
+
    return 0;
 }
