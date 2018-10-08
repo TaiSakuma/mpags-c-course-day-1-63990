@@ -3,6 +3,6 @@ A simple command line tool for encrypting/decrypting text using classical cipher
 
 Author: Sam Eriksen
 
-Link to powerpoints: https://warwick.ac.uk/fac/sci/physics/research/epp/resources/teac
+Link to powerpoints: https://warwick.ac.uk/fac/sci/physics/research/epp/resources/teaching/software_development_2018/
 
 ###
