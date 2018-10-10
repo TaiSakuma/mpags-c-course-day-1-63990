@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip> // setw
 
 // g++ -std=c++11 -o  mpags-cipher mpags-cipher.cpp
 
@@ -131,15 +132,106 @@ void week1_cipher()
   std::cout << cipher_output << std::endl;  
 }
 
+
 int main(int argc, char* argv[])
 {
+
+  // version number
+  const std::string program_version {"1.1"};
+  
   // Command Line Arguments
   const std::vector<std::string> cmdLineArgs {argv,argv+argc};
 
-  //std::cout << "Line entered: " << cmdLineArgs << std::endl;
+  // argument bools
+  bool argument_help{false};
+  bool argument_version{false};
 
+  // argument strings
+  std::string input_file{""};
+  std::string output_file{""};
+  
+  //cycle through arguments
+  // Currently whatever is after -i/-o will be taken as the input/output file name
+  for (int i{1}; i<argc; i++)
+    {
+      // select argument
+      const std::string &argument = cmdLineArgs[i];
+
+      //search for argument
+      if (argument == "-h" || argument == "--help")
+	{
+	  argument_help = true;
+	}
+      else if (argument == "--version")
+	{
+	  argument_version = true;
+	}
+      else if (argument == "-i")
+	{
+	  if (++i < argc)
+	    {
+	      input_file = cmdLineArgs[i];
+	    }
+	  else
+	    {
+	      std::cout << "No input file" << std::endl;
+	    }
+	}
+      else if (argument == "-o")
+	{
+	  if (++i < argc)
+	    {
+	      output_file = cmdLineArgs[i];
+	    }
+	  else
+	    {
+	      std::cout << "No output file" << std::endl;
+	    }
+	}
+      else
+	{
+	  std::cout << argument << " is not supported" << std::endl;
+	}
+    }
+
+  // respond to command line arguments
+  // Suggest changing this to Boost Format
+  if (argument_help)
+    {
+      std::cout
+	<< "Usage: mpags-cipher [options] \n"
+	<< "Options: \n"
+	<< std::setw(11) << std::left << "-h" << "Display this information \n"
+	<< std::setw(11) << std::left << "--help" << "Display this information \n"
+	<< std::setw(11) << std::left << "-i" << "Input file name \n"
+	<< std::setw(11) << std::left << "-o" << "Output file name \n"
+	<< std::setw(11) << std::left << "--version" << "Returns program version \n\n"
+	<< std::endl;
+    }
+
+  if (argument_version)
+    {
+      std::cout << "Version number = " << program_version << std::endl;
+    }
+
+  if (! input_file.empty())
+    {
+      std::cout << "Input file recieved as \"" << input_file << "\"" << std::endl;
+    }
+  
+  if (! output_file.empty())
+    {
+      std::cout << "Output file recieved as \"" << output_file << "\"" << std::endl;
+    }
+
+  std::cout << "\nPress Enter to continue" << std::endl;
+  getchar();
   week1_training();
+  
+  std::cout << "\nPress Enter to continue" << std::endl;
+  getchar();
   week1_cipher();
+
 
 
 }
